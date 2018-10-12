@@ -13,6 +13,8 @@
 		1F0735D0216F5BBE0017C49B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0735CF216F5BBE0017C49B /* Assets.xcassets */; };
 		1F0735D3216F5BBE0017C49B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F0735D1216F5BBE0017C49B /* LaunchScreen.storyboard */; };
 		1F0735D6216F5BBE0017C49B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0735D5216F5BBE0017C49B /* main.m */; };
+		1F83B549217073400076DA3F /* SLPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F83B548217073400076DA3F /* SLPopView.m */; };
+		1F83B54F217078560076DA3F /* SLTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F83B54E217078560076DA3F /* SLTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		1F0735D2216F5BBE0017C49B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F0735D4216F5BBE0017C49B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F0735D5216F5BBE0017C49B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F83B547217073400076DA3F /* SLPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPopView.h; sourceTree = "<group>"; };
+		1F83B548217073400076DA3F /* SLPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLPopView.m; sourceTree = "<group>"; };
+		1F83B54D217078560076DA3F /* SLTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTools.h; sourceTree = "<group>"; };
+		1F83B54E217078560076DA3F /* SLTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTools.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				1F0735C7216F5BBD0017C49B /* AppDelegate.m */,
 				1F0735C9216F5BBD0017C49B /* ViewController.h */,
 				1F0735CA216F5BBD0017C49B /* ViewController.m */,
+				1F83B547217073400076DA3F /* SLPopView.h */,
+				1F83B548217073400076DA3F /* SLPopView.m */,
+				1F83B54D217078560076DA3F /* SLTools.h */,
+				1F83B54E217078560076DA3F /* SLTools.m */,
 				1F0735CC216F5BBD0017C49B /* Main.storyboard */,
 				1F0735CF216F5BBE0017C49B /* Assets.xcassets */,
 				1F0735D1216F5BBE0017C49B /* LaunchScreen.storyboard */,
@@ -141,9 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F83B54F217078560076DA3F /* SLTools.m in Sources */,
 				1F0735CB216F5BBD0017C49B /* ViewController.m in Sources */,
 				1F0735D6216F5BBE0017C49B /* main.m in Sources */,
 				1F0735C8216F5BBD0017C49B /* AppDelegate.m in Sources */,
+				1F83B549217073400076DA3F /* SLPopView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
