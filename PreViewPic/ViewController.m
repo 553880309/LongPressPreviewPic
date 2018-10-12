@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()<UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate>
+@interface ViewController () <UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *firstImage;
 @property (weak, nonatomic) IBOutlet UIImageView *secondImage;
@@ -71,29 +71,45 @@
         return;
     }
     
-    if ([gesture state] == UIGestureRecognizerStateBegan)
+    [self imageView:imageView responseGesture:gesture];
+}
+
+- (void)imageView:(UIImageView *)imageView responseGesture:(UILongPressGestureRecognizer *)gesture
+{
+    switch (gesture.state)
     {
-        [self showPopView:imageView];
-        self.popView.modalInPopover = YES;
-    }
-    else if ([gesture state] == UIGestureRecognizerStateChanged)
-    {
-        [self addContentForPopView:imageView];
-        self.popView.modalInPopover = YES;
-    }
-    else if ([gesture state] == UIGestureRecognizerStateEnded)
-    {
-        [self.popView dismissViewControllerAnimated:YES completion:nil];
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+            
+            [self showPopView:imageView];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateCancelled:
+            
+            [self.popView dismissViewControllerAnimated:YES completion:nil];
+            self.popView.modalInPopover = NO;
+            break;
+            
+        default:
+            break;
     }
 }
 
 - (void)showPopView:(UIImageView *)imageView
 {
+    // 给触摸到的视图添加PopView以及PopView将要显示的数据
     [self addContentForPopView:imageView];
     
+    // 如果当前popView显示状态，直接返回
+    if (self.popView.isModalInPopover) return;
+
+    // 如果当前没有显示popView，则显示
     [self presentViewController:self.popView animated:YES completion:nil];
+    self.popView.modalInPopover = YES;
 }
 
+// 添加PopView将要显示的数据
 - (void)addContentForPopView:(UIImageView *)imageView
 {
     if ([imageView isEqual:self.popView.popoverPresentationController.sourceView])
@@ -106,6 +122,8 @@
     self.popView.popoverPresentationController.sourceRect = CGRectMake(0, -4, imageView.bounds.size.width, imageView.bounds.size.height);
     self.popView.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionDown;
     self.popView.popoverPresentationController.delegate = self;
+    // 注意 - 更新视图（如果不更新，无法切换popView指向的位置）
+    [self.popView.popoverPresentationController containerViewWillLayoutSubviews];
 }
 
 
@@ -131,11 +149,6 @@
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection
 {
     return UIModalPresentationNone;
-}
-
-- (void)popoverPresentationController:(UIPopoverPresentationController *)popoverPresentationController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView *__autoreleasing  _Nonnull *)view
-{
-    NSLog(@"popoverPresentationController:willRepositionPopoverToRect");
 }
 
 
@@ -180,23 +193,6 @@
         _emoticonView.frame = CGRectMake(0, 0, 150, 150);
     }
     return _emoticonView;
-}
-
-// 获取当前顶级视图控制器
-- (UIViewController *)fetchTopviewControler
-{
-    UIViewController *rootVC = [[UIApplication sharedApplication].delegate window].rootViewController;
-    UIViewController *parent = rootVC;
-    while ((parent = rootVC.presentedViewController) != nil)
-    {
-        rootVC = parent;
-        
-    }
-    while ([rootVC isKindOfClass:[UINavigationController class]])
-    {
-        rootVC = [(UINavigationController *)rootVC topViewController];
-    }
-    return rootVC;
 }
 
 @end
