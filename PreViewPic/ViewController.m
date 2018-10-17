@@ -47,7 +47,7 @@
     {
         if (self.popView.isModalInPopover)
         {
-            [self.popView dismissViewControllerAnimated:YES completion:nil];
+            [self popViewDismiss];
         }
     }
 }
@@ -65,8 +65,7 @@
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
             
-            [self.popView dismissViewControllerAnimated:YES completion:nil];
-            self.popView.modalInPopover = NO;
+            [self popViewDismiss];
             break;
             
         default:
@@ -74,6 +73,11 @@
     }
 }
 
+- (void)popViewDismiss
+{
+    [self.popView dismissViewControllerAnimated:YES completion:nil];
+    self.popView.modalInPopover = NO;
+}
 
 #pragma mark - 拖拽手势事件
 
